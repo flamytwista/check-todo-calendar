@@ -58,7 +58,7 @@ export default class TodoListHolder extends VueComponent<Props> {
           attributes={this.calendarAttrs}
           v-model={this.selectedDate}
           is-inline
-          first-day-of-week="2"
+          first-day-of-week={2}
           locale="ru"
       />
         <div class={styles.todoList}>todo-list</div>
