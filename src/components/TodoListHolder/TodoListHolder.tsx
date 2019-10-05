@@ -1,4 +1,4 @@
-import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
+import {Component, Prop, Vue} from 'vue-property-decorator';
 import { VueComponent } from '../../shims-vue';
 
 import styles from './TodoListHolder.css?module'
@@ -16,16 +16,18 @@ export default class TodoListHolder extends VueComponent<Props> {
     new Date(2019, 9, 22),
   ]
 
+  selectedDate = new Date()
+
   @Prop()
   private msg!: string;
 
   get calendarAttrs() {
     return [
-      {
-        key: 'today',
-        highlight: true,
-        dates: new Date(),
-      },
+      // {
+      //   key: 'today',
+      //   highlight: true,
+      //   dates: new Date(),
+      // },
       {
         key: 'datesWithTasks',
         dot: {
@@ -43,20 +45,13 @@ export default class TodoListHolder extends VueComponent<Props> {
   set datesWithTasks(value) {
     this.ddd = value
   }
-  // @Watch('datesWithTasks')
-  @Watch('calendarAttrs')
-  onPropertyChanged(value, oldValue) {
-    console.log('onPropertyChanged')
-    console.log(value); console.log('^...value:')
-    console.log(oldValue); console.log('^...oldValue:')
-  }
 
   mounted(){
     console.log('mounted')
     setTimeout(()=>{
       console.log('mounted2')
       this.ddd = [
-        new Date(2019, 9, 3),
+        new Date(2019, 9, 5),
         new Date(2019, 9, 11),
         new Date(2019, 9, 23),
       ]
@@ -65,9 +60,13 @@ export default class TodoListHolder extends VueComponent<Props> {
   render() {
     return (
       <div class={"todoListHolder " + styles.todoListHolder}>
-        <v-calendar
+        {/*min-date={new Date()}*/}
+        {/*<v-calendar*/}
+        <v-date-picker
           class={styles.vCalendar}
           attributes={this.calendarAttrs}
+          v-model={this.selectedDate}
+          is-inline
         />
         <div class={styles.todoList}>todo-list</div>
       </div>
