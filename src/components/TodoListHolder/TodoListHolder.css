@@ -1,0 +1,15 @@
+.todoListHolder {
+    outline: 1px solid darkred;
+    display: flex;
+    flex-flow: row nowrap;
+}
+.calendar {
+    outline: 1px solid green;
+}
+
+/*.todoListHolder .calendar {*/
+/*    outline: 1px solid green;*/
+/*}*/
+/*.todoListHolder .todoList {*/
+/*    outline: 1px solid green;*/
+/*}*/

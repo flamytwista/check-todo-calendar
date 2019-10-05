@@ -14,13 +14,12 @@ export default class HelloWorld extends VueComponent<Props> {
   private msg!: string;
 
   render() {
+    console.log(styles.hello)
+    console.log('^...styles.hello:')
     return (
       <div class={styles.hello}>
-        <h1>{ this.msg }</h1>
         <h1>TSX-HelloWorld</h1>
-        <p>
-          ...
-        </p>
+        <h1>{ this.msg }</h1>
       </div>
     )
   }

@@ -1,5 +1,5 @@
 import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld';
+import TodoListHolder from './components/TodoListHolder/TodoListHolder';
 
 import './App.css'
 
@@ -8,9 +8,7 @@ export default class App extends Vue {
   render() {
     return (
       <div id="app">
-        <img alt="Vue logo" src={require('./assets/logo.png')} />
-        <p>TSX-APP</p>
-        <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+        <TodoListHolder msg="TodoListHolder"/>
       </div>
     )
   }
