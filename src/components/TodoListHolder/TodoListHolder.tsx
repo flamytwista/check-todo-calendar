@@ -15,7 +15,7 @@ export default class TodoListHolder extends VueComponent<Props> {
 
   render() {
     return (
-      <div class={styles.todoListHolder}>
+      <div class={"todoListHolder " + styles.todoListHolder}>
         <div class={styles.calendar}>calendar</div>
         <div class={styles.todoList}>todo-list</div>
       </div>

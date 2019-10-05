@@ -1,6 +1,10 @@
 #app {
 
 }
-.todoListHolder {
-    background-color: red;
+:root {
+    --gap: 16px;
 }
+* {
+    box-sizing: border-box;
+}
+
