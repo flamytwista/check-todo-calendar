@@ -23,11 +23,6 @@ export default class TodoListHolder extends VueComponent<Props> {
 
   get calendarAttrs() {
     return [
-      // {
-      //   key: 'today',
-      //   highlight: true,
-      //   dates: new Date(),
-      // },
       {
         key: 'datesWithTasks',
         dot: {
@@ -47,9 +42,7 @@ export default class TodoListHolder extends VueComponent<Props> {
   }
 
   mounted(){
-    console.log('mounted')
     setTimeout(()=>{
-      console.log('mounted2')
       this.ddd = [
         new Date(2019, 9, 5),
         new Date(2019, 9, 11),
@@ -60,14 +53,14 @@ export default class TodoListHolder extends VueComponent<Props> {
   render() {
     return (
       <div class={"todoListHolder " + styles.todoListHolder}>
-        {/*min-date={new Date()}*/}
-        {/*<v-calendar*/}
         <v-date-picker
           class={styles.vCalendar}
           attributes={this.calendarAttrs}
           v-model={this.selectedDate}
           is-inline
-        />
+          first-day-of-week="2"
+          locale="ru"
+      />
         <div class={styles.todoList}>todo-list</div>
       </div>
     )
