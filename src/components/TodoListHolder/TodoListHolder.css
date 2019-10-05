@@ -2,7 +2,8 @@
     outline: 1px solid darkred;
     display: flex;
     flex-flow: row nowrap;
-    width: 300px;
+    /*width: 300px;*/
+    width: 600px;
 }
 .calendar {
     outline: 1px solid green;

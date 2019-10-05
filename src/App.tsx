@@ -2,7 +2,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import TodoListHolder from './components/TodoListHolder/TodoListHolder';
 
 import './App.css'
-import styles from './App.module.css'
+import styles from './App.module.css?module'
 
 @Component
 export default class App extends Vue {
