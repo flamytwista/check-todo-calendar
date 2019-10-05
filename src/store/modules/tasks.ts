@@ -11,16 +11,22 @@ export class TasksModule {
 
   @Action()
   public async fetchTasks() {
-    // эмуляция запроса за существующими задачами
+    // эмуляция запроса к бэку за существующими задачами
     await new Promise(r => setTimeout(r, 1000));
+
+    // todo: вынести в отдельный файл
     const tasksFromResponse = [
-      {date: new Date(2019, 9, 2), text: 'Первая задача' },
-      {date: new Date(2019, 9, 10), text: 'Вторая задача' },
-      {date: new Date(2019, 9, 22), text: 'Третья задача' },
+      {date: new Date(2019, 9, 2), text: 'День 1 задача 1' },
+      {date: new Date(2019, 9, 2), text: 'День 1 задача 2' },
+      {date: new Date(2019, 9, 10), text: 'День 2 задача 1' },
+      {date: new Date(2019, 9, 22), text: 'День 3 задача 1' },
     ]
+
+    // создать Task[] из ответа сервера
     const tasks = tasksFromResponse.map((task)=>{
       return new Task({date: task.date, text: task.text})
     })
+
     this.setTasks(tasks)
   }
 

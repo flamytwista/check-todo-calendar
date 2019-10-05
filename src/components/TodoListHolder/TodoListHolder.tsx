@@ -1,6 +1,11 @@
 import {Component, Prop, Vue} from 'vue-property-decorator';
 import { VueComponent } from '../../shims-vue';
 
+import {useModule, useStore} from 'vuex-simple';
+import { MyStore } from '@/store/store';
+import { TasksModule } from '@/store/modules/tasks';
+
+
 import styles from './TodoListHolder.css?module'
 
 interface Props {
@@ -10,11 +15,8 @@ interface Props {
 @Component
 export default class TodoListHolder extends VueComponent<Props> {
 
-  ddd = [
-    new Date(2019, 9, 2),
-    new Date(2019, 9, 10),
-    new Date(2019, 9, 22),
-  ]
+  public store: MyStore = useStore(this.$store);
+  public foo1?: TasksModule = useModule(this.$store, ['tasks']);
 
   selectedDate = new Date()
 
@@ -35,20 +37,14 @@ export default class TodoListHolder extends VueComponent<Props> {
   }
 
   get datesWithTasks() {
-    return this.ddd
+    return this.store.tasks.datesWithTasks;
   }
-  set datesWithTasks(value) {
-    this.ddd = value
+  get tasks() {
+    return this.store.tasks.tasksByDate(this.selectedDate)
   }
 
-  mounted(){
-    setTimeout(()=>{
-      this.ddd = [
-        new Date(2019, 9, 5),
-        new Date(2019, 9, 11),
-        new Date(2019, 9, 23),
-      ]
-    },2000)
+  created(){
+    this.store.tasks.fetchTasks()
   }
   render() {
     return (
@@ -61,7 +57,10 @@ export default class TodoListHolder extends VueComponent<Props> {
           first-day-of-week={2}
           locale="ru"
       />
-        <div class={styles.todoList}>todo-list</div>
+        <div class={styles.todoList}>
+          todo-list
+          {this.tasks}
+        </div>
       </div>
     )
   }
