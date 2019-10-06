@@ -36,6 +36,20 @@ export class TasksModule {
     this.addTask(task)
     return {} // вернули запрос от сервера
   }
+  @Action()
+  public async updateTask(task: Task){
+    // здесь должен быть запрос на сервер
+
+    this.putTask(task)
+    return {} // вернули запрос от сервера
+  }
+
+  @Mutation()
+  public putTask(task: Task) {
+    // обновляем задачу по id
+    let index = this.tasks.findIndex(currTask=>currTask.id === task.id)
+    if (index !== -1) this.tasks.splice(index, 1, task)
+  }
 
   @Mutation()
   public addTask(task: Task) {
@@ -71,13 +85,19 @@ export class TasksModule {
 
   @Getter()
   public get datesWithTasks(): Date[] {
+    // К слову.
+    // От выборок подобным таким как в этом геттере может спасти VuexORM.
 
-    // **сначала** получить из каждого дня где есть задачи по одной задаче
-    let oneTaskPerDay: Task[] = _uniqBy(this.tasks, ((task)=>{
+    // получить невыполненые задачи
+    let undoneTasks = this.tasks.filter(task => !task.done)
+
+    // получить из каждого дня где есть задачи по одной задаче
+    let oneTaskPerDay: Task[] = _uniqBy(undoneTasks, ((task)=>{
+      // return task.dayIdentifier && !task.done
       return task.dayIdentifier
     }))
 
-    // **потом** получить даты из этих задач
+    // получить даты из этих задач
     const dates: Date[] = oneTaskPerDay.map((task)=>{
       return task.date
     })

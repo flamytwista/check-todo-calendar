@@ -1,6 +1,9 @@
 import {Component, Prop, Vue} from 'vue-property-decorator';
 import { VueComponent } from '@/shims-vue';
 
+import {useStore} from 'vuex-simple';
+import { MyStore } from '@/store/store';
+
 import Task from '@/data-types/Task';
 import styles from './TodoItem.css?module'
 
@@ -12,11 +15,15 @@ interface Props {
 @Component
 export default class TodoItem extends VueComponent<Props> {
 
+  public store: MyStore = useStore(this.$store);
+
   @Prop()
   private task!: Task;
 
-  changeDone(){
-    console.log('changeDone')
+  async changeDone(){
+    this.task.done = !this.task.done
+    await this.store.tasks.updateTask(this.task)
+    // console.log('changeDone')
   }
 
   render() {
