@@ -10,7 +10,7 @@ interface Props {
 }
 
 @Component
-export default class TodoList extends VueComponent<Props> {
+export default class TodoItem extends VueComponent<Props> {
 
   @Prop()
   private task!: Task;

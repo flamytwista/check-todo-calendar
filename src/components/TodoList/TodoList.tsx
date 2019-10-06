@@ -4,6 +4,7 @@ import { VueComponent } from '@/shims-vue';
 import { Fragment } from 'vue-fragment'
 
 import TodoItem from '@/components/TodoItem/TodoItem';
+import TaskCreator from '@/components/TaskCreator/TaskCreator';
 
 import {useStore} from "vuex-simple";
 import {MyStore} from "@/store/store";
@@ -49,6 +50,7 @@ export default class TodoList extends VueComponent<Props> {
                 task={task}
               />
             )}
+            <TaskCreator selectedDate={this.selectedDate} />
           </Fragment>
         ) : (
           <p>Загрузка</p>
