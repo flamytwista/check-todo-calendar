@@ -24,6 +24,7 @@ export default class TaskCreator extends VueComponent<Props> {
 
   // isCreatingNow = false
   isCreatingNow = true    // todo: временно для разработки. Потом удалить.
+  isSendingNow = false
 
   form = {
     time: '',
@@ -45,6 +46,15 @@ export default class TaskCreator extends VueComponent<Props> {
   }
   get isFormValid(): boolean {
     return this.isTextValid && this.isTimeValid
+  }
+  get showCreationLoader(): boolean {
+    return this.isSendingNow
+  }
+  get showCreationForm(): boolean {
+    return this.isCreatingNow && !this.isSendingNow
+  }
+  get showCreateButton(): boolean {
+    return !this.isCreatingNow && !this.isSendingNow
   }
 
   reset(){
@@ -70,15 +80,21 @@ export default class TaskCreator extends VueComponent<Props> {
       date: date,
       text: this.form.text
     })
+    this.isSendingNow = true
     await this.store.tasks.createTask(task);
+    this.isSendingNow = false
     this.reset()
   }
   render() {
     return (
       <div class={styles.taskCreator}>
-        {(!this.isCreatingNow) ? (
+        {this.showCreationLoader &&
+          <p>Задача создается...</p>
+        }
+        {this.showCreateButton && (
           <button onClick={()=>{this.isCreatingNow = true}}>Создать</button>
-        ) : (
+        )}
+        {this.showCreationForm &&
           <Fragment>
             <input
               type="text"
@@ -97,7 +113,7 @@ export default class TaskCreator extends VueComponent<Props> {
               onClick={this.create}
             >Сохранить</button>
           </Fragment>
-        )}
+        }
 
       </div>
     )
