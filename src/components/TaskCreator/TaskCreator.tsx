@@ -1,4 +1,4 @@
-import {Component, Prop, Vue} from 'vue-property-decorator';
+import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
 import { VueComponent } from '@/shims-vue';
 //@ts-ignore
 import { Fragment } from 'vue-fragment'
@@ -23,6 +23,10 @@ export default class TaskCreator extends VueComponent<Props> {
     text: ''
   }
 
+  @Watch('selectedDate')
+  onPropertyChanged() {
+    this.reset()
+  }
   get isTimeValid(): boolean{
     // вариант только для например 12:06
     return /^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$/.test(this.form.time)
