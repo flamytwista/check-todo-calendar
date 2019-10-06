@@ -22,15 +22,20 @@ export default class TodoList extends VueComponent<Props> {
   public store: MyStore = useStore(this.$store);
 
   get tasks() {
-    // return []
     return this.store.tasks.tasksByDate(this.selectedDate)
   }
+  get thereAreTasksForToday(){
+    return this.tasks.length > 0
+  }
+
   render() {
     return (
-      <div>
-        {/*<div class={"todoList " + styles.todoList}>*/}
+      <div class={"todoList " + styles.todoList}>
+        <p>
+          {this.thereAreTasksForToday ? 'Задачи' : 'Задач на сегодня нет'}
+        </p>
         todo-list
-          {this.tasks}
+        {this.tasks}
       </div>
     )
   }
