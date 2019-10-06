@@ -4,6 +4,7 @@ import _uniqBy from 'lodash/uniqBy'
 import dayIdentifier from '@/helpers/Date/dayIdentifier';
 
 import tasksFromServer from '@/dummy-data/tasksFromServer';
+import {allResolved} from "q";
 
 export class TasksModule {
   @State()
@@ -41,11 +42,17 @@ export class TasksModule {
   @Getter()
   public get tasksByDate() {
     return (date: Date) => {
-      let result = this.tasks.filter((task)=>{
+      // получить по дате
+      let tasksForDate = this.tasks.filter((task)=>{
         return task.isSameDay(date)
       })
-      // todo: упорядочить что получилось по возрастанию
-      return result
+
+      // упорядочить по возрастанию
+      tasksForDate = tasksForDate.sort((prevTask, nextTask)=>{
+        return prevTask.date > nextTask.date ? 1 : prevTask.date < nextTask.date ? -1 : 0;
+      })
+
+      return tasksForDate
     }
   }
 
