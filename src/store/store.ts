@@ -1,7 +1,6 @@
 import { Module, State } from 'vuex-simple';
-import { TasksModule } from './modules/tasks';
+import { TasksModule } from '@/store/modules/tasks';
 
-// console.log(TasksModule); console.log('^...TasksModule:')
 export class MyStore {
 
   @Module()

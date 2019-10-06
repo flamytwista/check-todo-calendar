@@ -1,7 +1,7 @@
 import {Action, Getter, Mutation, State} from 'vuex-simple';
-import Task from '../../DataTypes/Task';
+import Task from '@/data-types/Task';
 import _uniqBy from 'lodash/uniqBy'
-import dayIdentifier from '../../helpers/Date/dayIdentifier';
+import dayIdentifier from '@/helpers/Date/dayIdentifier';
 
 
 export class TasksModule {

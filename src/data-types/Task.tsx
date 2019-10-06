@@ -1,4 +1,4 @@
-import dayIdentifier from '../helpers/Date/dayIdentifier';
+import dayIdentifier from '@/helpers/Date/dayIdentifier';
 
 
 export default class Task {
