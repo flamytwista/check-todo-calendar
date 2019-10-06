@@ -9,7 +9,7 @@ export default class App extends Vue {
   render() {
     return (
       <div id="app" class={styles.app}>
-        <TodoListHolder class={styles.todoListHolder} msg="TodoListHolder"/>
+        <TodoListHolder class={styles.todoListHolder}/>
       </div>
     )
   }

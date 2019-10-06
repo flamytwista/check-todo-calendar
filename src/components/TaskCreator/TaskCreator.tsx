@@ -2,7 +2,7 @@ import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
 import { VueComponent } from '@/shims-vue';
 import Task from '@/data-types/Task.tsx';
 
-import {useModule, useStore} from 'vuex-simple';
+import {useStore} from 'vuex-simple';
 import { MyStore } from '@/store/store';
 
 //@ts-ignore

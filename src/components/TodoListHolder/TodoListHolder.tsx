@@ -1,31 +1,21 @@
 import {Component, Prop, Vue} from 'vue-property-decorator';
 import { VueComponent } from '@/shims-vue';
 
-import {useModule, useStore} from 'vuex-simple';
+import {useStore} from 'vuex-simple';
 import { MyStore } from '@/store/store';
-import { TasksModule } from '@/store/modules/tasks';
 
 import TodoList from '@/components/TodoList/TodoList';
 
 
 import styles from './TodoListHolder.css?module'
 
-interface Props {
-  // todo: убрать это свойство
-  msg: string
-}
 
 @Component
-export default class TodoListHolder extends VueComponent<Props> {
+export default class TodoListHolder extends VueComponent {
 
   public store: MyStore = useStore(this.$store);
-  // todo: убрать?
-  // public foo1?: TasksModule = useModule(this.$store, ['tasks']);
 
   selectedDate = new Date()
-
-  @Prop()
-  private msg!: string;
 
   get calendarAttrs() {
     return [
