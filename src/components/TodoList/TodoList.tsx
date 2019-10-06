@@ -38,22 +38,30 @@ export default class TodoList extends VueComponent<Props> {
   render() {
     return (
       <div class={"todoList " + styles.todoList}>
-        {this.areTasksFromServerFetched ? (
+        <p class={"todoList " + styles['todoList__header']}>
+          {
+            !this.areTasksFromServerFetched ? 'Загрузка' :
+              this.thereAreTasksForToday ? 'Задачи' : 'Задач на сегодня нет'
+          }
+        </p>
+        {this.areTasksFromServerFetched && (
           <Fragment>
-            <p>
-              {this.thereAreTasksForToday ? 'Задачи' : 'Задач на сегодня нет'}
-            </p>
-            {this.tasks.map((task) =>
+            <div class={styles['todoList__items-wrapper']}>
+              {this.tasks.map((task) =>
 
-              <TodoItem
-                key={String(task.id)}
-                task={task}
-              />
-            )}
-            <TaskCreator selectedDate={this.selectedDate} />
+                <TodoItem
+                  class={styles.todoItem}
+                  key={String(task.id)}
+                  task={task}
+                />
+              )}
+            </div>
+            <div class={styles['todoList__pusher']}></div>
+            <TaskCreator
+              selectedDate={this.selectedDate}
+              class={styles['todoList__taskCreator']}
+            />
           </Fragment>
-        ) : (
-          <p>Загрузка</p>
         )}
       </div>
     )

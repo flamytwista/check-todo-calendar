@@ -28,7 +28,7 @@ export default class TodoItem extends VueComponent<Props> {
 
   render() {
     return (
-      <div class={"todoItem " + styles.todoItem}>
+      <div class={styles.todoItem}>
         <input
           type="checkbox"
           name="checkbox"
