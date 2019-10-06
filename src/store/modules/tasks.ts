@@ -8,6 +8,8 @@ import tasksFromServer from '@/dummy-data/tasksFromServer';
 export class TasksModule {
   @State()
   public tasks: Task[] = [];
+  @State()
+  public areTasksFromServerFetched: boolean = false;
 
 
   @Action()
@@ -21,6 +23,14 @@ export class TasksModule {
     })
 
     this.setTasks(tasks)
+    this.setAreTasksFromServerFetched()
+
+    return tasksFromServer
+  }
+
+  @Mutation()
+  public setAreTasksFromServerFetched() {
+    this.areTasksFromServerFetched = true;
   }
 
   @Mutation()
@@ -49,5 +59,9 @@ export class TasksModule {
       return dayIdentifier(date)
     }))
     return dates
+  }
+  @Getter()
+  public get getAreTasksFromServerFetched() {
+    return this.areTasksFromServerFetched
   }
 }
