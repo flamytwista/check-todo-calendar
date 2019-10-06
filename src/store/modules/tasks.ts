@@ -20,7 +20,7 @@ export class TasksModule {
 
     // создать Task[] из ответа сервера
     const tasks = tasksFromServer.map((task)=>{
-      return new Task({date: task.date, text: task.text})
+      return new Task({date: task.date, text: task.text, done: task.done})
     })
 
     this.setTasks(tasks)

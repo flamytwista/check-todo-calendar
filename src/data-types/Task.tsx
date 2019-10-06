@@ -7,14 +7,17 @@ export default class Task {
   id: number
   date: Date
   text: string
+  done: boolean
 
-  constructor(payload: {
+  constructor({date, text, done = false}:{
     date: Date
     text: string
+    done?: boolean
   }) {
     this.id = lastId;
-    this.date = payload.date;
-    this.text = payload.text;
+    this.date = date;
+    this.text = text;
+    this.done = done
 
     lastId += 1;
   }
