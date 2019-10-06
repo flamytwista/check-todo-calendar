@@ -8,7 +8,7 @@ import styles from '@/App.module.css?module'
 export default class App extends Vue {
   render() {
     return (
-      <div id="app">
+      <div id="app" class={styles.app}>
         <TodoListHolder class={styles.todoListHolder} msg="TodoListHolder"/>
       </div>
     )

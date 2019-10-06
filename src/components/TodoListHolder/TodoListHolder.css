@@ -1,8 +1,6 @@
 .todoListHolder {
-    outline: 1px solid darkred;
     display: flex;
     flex-flow: row nowrap;
-    width: 600px;
 }
 .vCalendar {
     margin-right: var(--gap);
