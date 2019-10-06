@@ -1,5 +1,4 @@
 .todoItem {
-    outline: 1px solid darkred;
     display: flex;
     flex-flow: row nowrap;
     /*align-items: center;*/

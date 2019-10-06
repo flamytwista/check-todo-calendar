@@ -18,7 +18,6 @@
 .todoList__items-wrapper {
     overflow-y: auto;
     margin-bottom: var(--gap);
-    outline: 1px solid green;
 }
 .todoItem {
     margin-bottom: var(--gap);

@@ -1,5 +1,4 @@
 .taskCreator {
-    outline: 1px solid darkred;
 }
 
 .taskCreator__inputs {
@@ -15,6 +14,11 @@
 }
 .taskCreator__text {
     flex: 1 1 auto;
+}
+
+.taskCreator__please-wait {
+    height: 80px;
+    margin: 0;
 }
 
 .taskCreator__buttons {

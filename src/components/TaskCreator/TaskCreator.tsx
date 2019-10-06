@@ -103,7 +103,7 @@ export default class TaskCreator extends VueComponent<Props> {
     return (
       <div class={styles.taskCreator}>
         {this.showCreationLoader &&
-          <p>Задача создается...</p>
+          <p class={styles['taskCreator__please-wait']}>Задача создается...</p>
         }
         {this.showCreateButton && (
           <button onClick={()=>{this.isCreatingNow = true}}>Создать</button>
