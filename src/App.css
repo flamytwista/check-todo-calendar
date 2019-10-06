@@ -3,6 +3,8 @@
 }
 :root {
     --gap: 16px;
+    --clrLineGray: #cbd5e0;
+    --borderRadius: 8px;
 }
 * {
     box-sizing: border-box;

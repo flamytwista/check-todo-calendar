@@ -1,5 +1,7 @@
 import {Component, Prop, Vue} from 'vue-property-decorator';
 import { VueComponent } from '@/shims-vue';
+//@ts-ignore
+import { Fragment } from 'vue-fragment'
 
 import TodoItem from '@/components/TodoItem/TodoItem';
 
@@ -36,7 +38,7 @@ export default class TodoList extends VueComponent<Props> {
     return (
       <div class={"todoList " + styles.todoList}>
         {this.areTasksFromServerFetched ? (
-          <div>
+          <Fragment>
             <p>
               {this.thereAreTasksForToday ? 'Задачи' : 'Задач на сегодня нет'}
             </p>
@@ -47,7 +49,7 @@ export default class TodoList extends VueComponent<Props> {
                 task={task}
               />
             )}
-          </div>
+          </Fragment>
         ) : (
           <p>Загрузка</p>
         )}

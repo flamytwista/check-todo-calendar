@@ -1,3 +1,8 @@
 .todoList {
-    zoom:1;
+    padding: var(--gap);
+    border: 1px solid var(--clrLineGray);
+    border-radius: 8px;
+    width: 268px;
 }
+.todoList > *:first-child {margin-top: 0;}
+.todoList > *:last-child {margin-bottom: 0;}
