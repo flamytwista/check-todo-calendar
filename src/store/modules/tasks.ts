@@ -28,6 +28,19 @@ export class TasksModule {
 
     return tasksFromServer
   }
+  @Action()
+  public async createTask(task: Task){
+    // эмуляция запроса
+    await new Promise(r => setTimeout(r, 1000));
+
+    this.addTask(task)
+    return {} // вернули запрос от сервера
+  }
+
+  @Mutation()
+  public addTask(task: Task) {
+    this.tasks.push(task)
+  }
 
   @Mutation()
   public setAreTasksFromServerFetched() {

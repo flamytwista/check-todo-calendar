@@ -1,5 +1,10 @@
 import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
 import { VueComponent } from '@/shims-vue';
+import Task from '@/data-types/Task.tsx';
+
+import {useModule, useStore} from 'vuex-simple';
+import { MyStore } from '@/store/store';
+
 //@ts-ignore
 import { Fragment } from 'vue-fragment'
 import styles from './TaskCreator.css?module'
@@ -11,6 +16,8 @@ interface Props {
 
 @Component
 export default class TaskCreator extends VueComponent<Props> {
+
+  public store: MyStore = useStore(this.$store);
 
   @Prop()
   private selectedDate!: Date
@@ -45,6 +52,27 @@ export default class TaskCreator extends VueComponent<Props> {
     this.form.text = ''
     this.isCreatingNow = false
   }
+  async create(){
+    // получить отдельно часы и минуты из строки со временем
+    let [hours, minutes] =
+      this.form.time.split(":")
+      .map((item)=>{return Number(item)})
+
+    let date = new Date(
+      this.selectedDate.getFullYear(),
+      this.selectedDate.getMonth(),
+      this.selectedDate.getDate(),
+      hours,
+      minutes
+    )
+
+    let task = new Task({
+      date: date,
+      text: this.form.text
+    })
+    await this.store.tasks.createTask(task);
+    this.reset()
+  }
   render() {
     return (
       <div class={styles.taskCreator}>
@@ -64,7 +92,10 @@ export default class TaskCreator extends VueComponent<Props> {
               vModel={this.form.text}
             />
             <button onClick={this.reset} >Отмена</button>
-            <button disabled={!this.isFormValid}>Сохранить</button>
+            <button
+              disabled={!this.isFormValid}
+              onClick={this.create}
+            >Сохранить</button>
           </Fragment>
         )}
 
