@@ -1,4 +1,4 @@
-import {Component, Prop, Vue} from 'vue-property-decorator';
+import {Component} from 'vue-property-decorator';
 import { VueComponent } from '@/shims-vue';
 
 import {useStore} from 'vuex-simple';
@@ -18,16 +18,11 @@ export default class TodoListHolder extends VueComponent {
   selectedDate = new Date()
 
   get calendarAttrs() {
-    return [
-      {
+    return [{
         key: 'datesWithTasks',
-        dot: {
-          color: 'red',
-          class: 'my-dot-class',
-        },
+        dot: {color: 'red'},
         dates: this.datesWithTasks,
-      }
-    ]
+    }]
   }
 
   get datesWithTasks() {

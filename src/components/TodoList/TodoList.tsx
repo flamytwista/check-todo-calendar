@@ -8,7 +8,6 @@ import TaskCreator from '@/components/TaskCreator/TaskCreator';
 
 import {useStore} from "vuex-simple";
 import {MyStore} from "@/store/store";
-import Task from '@/data-types/Task';
 
 import styles from './TodoList.css?module'
 

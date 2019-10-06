@@ -25,8 +25,7 @@ export default class TaskCreator extends VueComponent<Props> {
   @Prop()
   private selectedDate!: Date
 
-  // isCreatingNow = false
-  isCreatingNow = true    // todo: временно для разработки. Потом удалить.
+  isCreatingNow = false
   isSendingNow = false
 
   isTimeValid = false
@@ -66,7 +65,6 @@ export default class TaskCreator extends VueComponent<Props> {
   async validateTime(){
 
     // эмуляция проверки на сервере.
-    // Я-бы сделал покороче, но в задаче огромными буквами указано 2. 500мс в debounce + 1500 мс на ожидание ответа
     await new Promise(r => setTimeout(r, 1500));
 
     this.isTimeValid = /^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$/.test(this.form.time)

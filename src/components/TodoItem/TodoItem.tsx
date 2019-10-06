@@ -1,4 +1,4 @@
-import {Component, Prop, Vue} from 'vue-property-decorator';
+import {Component, Prop} from 'vue-property-decorator';
 import { VueComponent } from '@/shims-vue';
 
 import {useStore} from 'vuex-simple';
@@ -23,7 +23,6 @@ export default class TodoItem extends VueComponent<Props> {
   async changeDone(){
     this.task.done = !this.task.done
     await this.store.tasks.updateTask(this.task)
-    // console.log('changeDone')
   }
 
   render() {
