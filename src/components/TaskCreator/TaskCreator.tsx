@@ -6,6 +6,9 @@ import {useStore} from 'vuex-simple';
 import { MyStore } from '@/store/store';
 
 //@ts-ignore
+import Debounce from 'debounce-decorator'
+
+//@ts-ignore
 import { Fragment } from 'vue-fragment'
 import styles from './TaskCreator.css?module'
 
@@ -59,11 +62,12 @@ export default class TaskCreator extends VueComponent<Props> {
     return !this.isCreatingNow && !this.isSendingNow
   }
 
+  @Debounce(500)
   async validateTime(){
 
     // эмуляция проверки на сервере.
-    // Я-бы сделал покороче, но в задаче огромными буквами указано 2
-    await new Promise(r => setTimeout(r, 2000));
+    // Я-бы сделал покороче, но в задаче огромными буквами указано 2. 500мс в debounce + 1500 мс на ожидание ответа
+    await new Promise(r => setTimeout(r, 1500));
 
     this.isTimeValid = /^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$/.test(this.form.time)
   }
@@ -124,7 +128,6 @@ export default class TaskCreator extends VueComponent<Props> {
             >Сохранить</button>
           </Fragment>
         }
-
       </div>
     )
   }
