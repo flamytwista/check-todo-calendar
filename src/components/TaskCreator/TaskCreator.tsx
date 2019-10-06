@@ -26,21 +26,23 @@ export default class TaskCreator extends VueComponent<Props> {
   isCreatingNow = true    // todo: временно для разработки. Потом удалить.
   isSendingNow = false
 
+  isTimeValid = false
+
   form = {
     time: '',
     text: ''
   }
 
   @Watch('selectedDate')
-  onPropertyChanged() {
+  onSelectedDateChanged() {
     this.reset()
   }
-  get isTimeValid(): boolean{
-    // вариант только для например 12:06
-    return /^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$/.test(this.form.time)
-    // вариант для например 12:06 и 12:6
-    // return /^(0[0-9]|1[0-9]|2[0-3]|[0-9]):([0-9]|0[0-9]|[1-5][0-9])$/.test(this.form.time)
+
+  @Watch('form.time')
+  onFormTimeChanged() {
+    this.validateTime()
   }
+
   get isTextValid(): boolean{
     return this.form.text.length > 0
   }
@@ -57,6 +59,14 @@ export default class TaskCreator extends VueComponent<Props> {
     return !this.isCreatingNow && !this.isSendingNow
   }
 
+  async validateTime(){
+
+    // эмуляция проверки на сервере.
+    // Я-бы сделал покороче, но в задаче огромными буквами указано 2
+    await new Promise(r => setTimeout(r, 2000));
+
+    this.isTimeValid = /^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$/.test(this.form.time)
+  }
   reset(){
     this.form.time = ''
     this.form.text = ''
