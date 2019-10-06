@@ -3,8 +3,10 @@
 }
 :root {
     --gap: 16px;
+
     --clrLineGray: #cbd5e0;
     --clrFirm: #3182CE;
+    
     --borderRadius: 8px;
 }
 * {
@@ -39,4 +41,36 @@ button {
 button:disabled {
     opacity: 0.5;
     cursor: default;
+}
+
+
+:root {
+
+}
+.cool-scrollbars {
+    /*for ff*/
+    scrollbar-color: var(--clrLineGray) transparent;
+    scrollbar-width: thin;
+}
+/*for webkit*/
+.cool-scrollbars::-webkit-scrollbar {
+   width: 6px;
+   height: 6px;
+}
+.cool-scrollbars::-webkit-scrollbar-button {
+    width: 0px;
+    height: 0px;
+}
+.cool-scrollbars::-webkit-scrollbar-track {
+    background: transparent;
+}
+.cool-scrollbars::-webkit-scrollbar-track-piece {
+    background: transparent;
+}
+.cool-scrollbars::-webkit-scrollbar-thumb {
+    background: var(--clrLineGray);
+    cursor: pointer !important;
+}
+.cool-scrollbars::-webkit-scrollbar-corner {
+    background: transparent;
 }

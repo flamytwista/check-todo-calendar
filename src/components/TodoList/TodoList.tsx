@@ -46,7 +46,7 @@ export default class TodoList extends VueComponent<Props> {
         </p>
         {this.areTasksFromServerFetched && (
           <Fragment>
-            <div class={styles['todoList__items-wrapper']}>
+            <div class={'cool-scrollbars ' + styles['todoList__items-wrapper']}>
               {this.tasks.map((task) =>
 
                 <TodoItem
