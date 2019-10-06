@@ -9,4 +9,13 @@ export default [
 
   {date: new Date(2019, 9, 10, 13, 13), text: 'День 2 задача 1', done: false },
   {date: new Date(2019, 9, 22, 13,13), text: 'День 3 задача 1', done: false },
+
+  {date: new Date(2019, 10, 2, 13,13), text: 'задача 1', done: false },
+  {date: new Date(2019, 10, 2, 13,14), text: 'задача 2', done: false },
+
+  {date: new Date(2019, 11, 2, 13,13), text: 'задача 1', done: false },
+  {date: new Date(2019, 11, 2, 13,14), text: 'задача 2', done: false },
+
+  {date: new Date(2020, 0, 2, 13,13), text: 'задача 1', done: false },
+  {date: new Date(2020, 0, 2, 13,14), text: 'задача 2', done: false },
 ]

@@ -1,17 +1,15 @@
 import {Action, Getter, Mutation, State} from 'vuex-simple';
 import Task from '@/data-types/Task';
 import _uniqBy from 'lodash/uniqBy'
-import dayIdentifier from '@/helpers/Date/dayIdentifier';
 
 import tasksFromServer from '@/dummy-data/tasksFromServer';
-import {allResolved} from "q";
 
 export class TasksModule {
+
   @State()
   public tasks: Task[] = [];
   @State()
   public areTasksFromServerFetched: boolean = false;
-
 
   @Action()
   public async fetchTasks() {
@@ -70,9 +68,7 @@ export class TasksModule {
   public get tasksByDate() {
     return (date: Date) => {
       // получить по дате
-      let tasksForDate = this.tasks.filter((task)=>{
-        return task.isSameDay(date)
-      })
+      let tasksForDate = this.tasks.filter(task => task.isSameDay(date))
 
       // упорядочить по возрастанию
       tasksForDate = tasksForDate.sort((prevTask, nextTask)=>{
@@ -92,15 +88,10 @@ export class TasksModule {
     let undoneTasks = this.tasks.filter(task => !task.done)
 
     // получить из каждого дня где есть задачи по одной задаче
-    let oneTaskPerDay: Task[] = _uniqBy(undoneTasks, ((task)=>{
-      // return task.dayIdentifier && !task.done
-      return task.dayIdentifier
-    }))
+    let oneTaskPerDay: Task[] = _uniqBy(undoneTasks, (task=> task.dayIdentifier))
 
     // получить даты из этих задач
-    const dates: Date[] = oneTaskPerDay.map((task)=>{
-      return task.date
-    })
+    const dates: Date[] = oneTaskPerDay.map(task => task.date)
 
     return dates
   }

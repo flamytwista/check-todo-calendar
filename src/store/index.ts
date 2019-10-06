@@ -9,8 +9,4 @@ Vue.use(Vuex);
 
 const instance = new MyStore();
 
-export default createVuexStore(instance, {
-  strict: false,
-  modules: {},
-  plugins: []
-});
+export default createVuexStore(instance);
