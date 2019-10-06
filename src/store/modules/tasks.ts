@@ -58,13 +58,17 @@ export class TasksModule {
 
   @Getter()
   public get datesWithTasks(): Date[] {
-    // todo: поменять местами для увеличения производительности
-    let dates = this.tasks.map((task)=>{
-      return new Date(task.date.getFullYear(), task.date.getMonth(), task.date.getDate())
-    })
-    dates = _uniqBy(dates, ((date)=>{
-      return dayIdentifier(date)
+
+    // **сначала** получить из каждого дня где есть задачи по одной задаче
+    let oneTaskPerDay: Task[] = _uniqBy(this.tasks, ((task)=>{
+      return task.dayIdentifier
     }))
+
+    // **потом** получить даты из этих задач
+    const dates: Date[] = oneTaskPerDay.map((task)=>{
+      return task.date
+    })
+
     return dates
   }
   @Getter()
