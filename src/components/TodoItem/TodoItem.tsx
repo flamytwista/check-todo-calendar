@@ -18,7 +18,8 @@ export default class TodoList extends VueComponent<Props> {
   render() {
     return (
       <div class={"todoItem " + styles.todoItem}>
-        {this.task.text}
+        <div class={styles['todoItem__time']}>{this.task.humanTime}</div>
+        <div class={styles['todoItem__text']}>{this.task.text}</div>
       </div>
     )
   }

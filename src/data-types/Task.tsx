@@ -21,6 +21,11 @@ export default class Task {
   get dayIdentifier(): string {
     return dayIdentifier(this.date)
   }
+  get humanTime(): string {
+    let hours = (this.date.getHours() < 10 ? '0' : '') + this.date.getHours();
+    let minutes = (this.date.getMinutes() < 10 ? '0' : '') + this.date.getMinutes();
+    return `${hours}:${minutes}`
+  }
   isSameDay(date: Date): boolean {
     return (
       this.date.getFullYear() === date.getFullYear()
