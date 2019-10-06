@@ -4,9 +4,39 @@
 :root {
     --gap: 16px;
     --clrLineGray: #cbd5e0;
+    --clrFirm: #3182CE;
     --borderRadius: 8px;
 }
 * {
     box-sizing: border-box;
+    outline: none;
 }
 
+/*Инпуты и баттоны по хорошему нужно делать компонентами.*/
+/*И не свести глобальные стили к минимуму.*/
+/*Но для этой задачи подойдет и так.*/
+
+input {
+    height: calc(var(--gap) * 2);
+    padding-left: calc(var(--gap) / 2);
+    padding-right: calc(var(--gap) / 2);
+    border-radius: var(--borderRadius);
+    border: 1px solid var(--clrLineGray);
+    display: block;
+    min-width: 0;
+}
+
+button {
+    background-color: var(--clrFirm);
+    color: white;
+    border: none;
+    height: calc(var(--gap) * 2);
+    padding-left: var(--gap);
+    padding-right: var(--gap);
+    border-radius: var(--borderRadius);
+    cursor: pointer;
+}
+button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}

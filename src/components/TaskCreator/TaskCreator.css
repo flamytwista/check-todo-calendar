@@ -1,3 +1,28 @@
 .taskCreator {
     outline: 1px solid darkred;
 }
+
+.taskCreator__inputs {
+    margin-bottom: var(--gap);
+
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.taskCreator__time {
+    flex: 0 0 56px;
+    margin-right: var(--gap);
+}
+.taskCreator__text {
+    flex: 1 1 auto;
+}
+
+.taskCreator__buttons {
+    margin-top: var(--gap);
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+

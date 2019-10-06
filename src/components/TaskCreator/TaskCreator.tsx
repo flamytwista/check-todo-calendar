@@ -110,22 +110,32 @@ export default class TaskCreator extends VueComponent<Props> {
         )}
         {this.showCreationForm &&
           <Fragment>
-            <input
-              type="text"
-              vModel={this.form.time}
-              placeholder="13:14"
-            />
-            <input
-              type="text"
-              placeholder="текст"
-              disabled={!this.isTimeValid}
-              vModel={this.form.text}
-            />
-            <button onClick={this.reset} >Отмена</button>
-            <button
-              disabled={!this.isFormValid}
-              onClick={this.create}
-            >Сохранить</button>
+            <div
+              class={styles['taskCreator__inputs']}
+            >
+              <input
+                type="text"
+                class={styles['taskCreator__time']}
+                vModel={this.form.time}
+                placeholder="13:14"
+              />
+              <input
+                type="text"
+                class={styles['taskCreator__text']}
+                placeholder="текст"
+                disabled={!this.isTimeValid}
+                vModel={this.form.text}
+              />
+            </div>
+
+            <div class={styles['taskCreator__buttons']}>
+              <button onclick={this.reset}>Отмена</button>
+              <button
+                disabled={!this.isFormValid}
+                onclick={this.create}
+              >Сохранить
+              </button>
+            </div>
           </Fragment>
         }
       </div>
