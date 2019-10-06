@@ -1,7 +1,10 @@
 import dayIdentifier from '@/helpers/Date/dayIdentifier';
 
+// обычно id создается на сервере, но раза бэкэнда нет, то пусть id создается здесь.
+let lastId: number = 0;
 
 export default class Task {
+  id: number
   date: Date
   text: string
 
@@ -9,8 +12,11 @@ export default class Task {
     date: Date
     text: string
   }) {
+    this.id = lastId;
     this.date = payload.date;
     this.text = payload.text;
+
+    lastId += 1;
   }
   get dayIdentifier(): string {
     return dayIdentifier(this.date)

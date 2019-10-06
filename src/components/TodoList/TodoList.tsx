@@ -1,12 +1,13 @@
 import {Component, Prop, Vue} from 'vue-property-decorator';
 import { VueComponent } from '@/shims-vue';
 
+import TodoItem from '@/components/TodoItem/TodoItem';
+
 import {useStore} from "vuex-simple";
 import {MyStore} from "@/store/store";
 import Task from '@/data-types/Task';
 
 import styles from './TodoList.css?module'
-
 
 
 interface Props {
@@ -35,10 +36,18 @@ export default class TodoList extends VueComponent<Props> {
     return (
       <div class={"todoList " + styles.todoList}>
         {this.areTasksFromServerFetched ? (
+          <div>
             <p>
               {this.thereAreTasksForToday ? 'Задачи' : 'Задач на сегодня нет'}
             </p>
-            // {this.tasks}
+            {this.tasks.map((task) =>
+
+              <TodoItem
+                key={String(task.id)}
+                task={task}
+              />
+            )}
+          </div>
         ) : (
           <p>Загрузка</p>
         )}
