@@ -5,10 +5,13 @@ import {useModule, useStore} from 'vuex-simple';
 import { MyStore } from '@/store/store';
 import { TasksModule } from '@/store/modules/tasks';
 
+import TodoList from '@/components/TodoList/TodoList';
+
 
 import styles from './TodoListHolder.css?module'
 
 interface Props {
+  // todo: убрать это свойство
   msg: string
 }
 
@@ -16,7 +19,8 @@ interface Props {
 export default class TodoListHolder extends VueComponent<Props> {
 
   public store: MyStore = useStore(this.$store);
-  public foo1?: TasksModule = useModule(this.$store, ['tasks']);
+  // todo: убрать?
+  // public foo1?: TasksModule = useModule(this.$store, ['tasks']);
 
   selectedDate = new Date()
 
@@ -39,9 +43,6 @@ export default class TodoListHolder extends VueComponent<Props> {
   get datesWithTasks() {
     return this.store.tasks.datesWithTasks;
   }
-  get tasks() {
-    return this.store.tasks.tasksByDate(this.selectedDate)
-  }
 
   created(){
     this.store.tasks.fetchTasks()
@@ -56,11 +57,11 @@ export default class TodoListHolder extends VueComponent<Props> {
           is-inline
           first-day-of-week={2}
           locale="ru"
-      />
-        <div class={styles.todoList}>
-          todo-list
-          {this.tasks}
-        </div>
+        />
+        <TodoList
+          class={`todoList ${styles.todoList}`}
+          selectedDate={this.selectedDate}
+        />
       </div>
     )
   }
