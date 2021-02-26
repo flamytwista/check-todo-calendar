@@ -1,5 +1,7 @@
 # check-todo-calendar
 
+![](./screen.png)
+
 ## Project setup
 ```
 npm install
